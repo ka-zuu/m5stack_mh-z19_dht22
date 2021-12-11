@@ -18,13 +18,11 @@ void setup()
 
   M5.begin();
   dht.begin();
-  //Serial.begin(9600);
   mhz19.begin(rx_pin, tx_pin);
   mhz19.setAutoCalibration(false);
 
   M5.Lcd.setTextSize(5);
 
-  //Serial.println("MH-Z19 is warming up now.");
   delay(10 * 1000); //
 }
 
@@ -37,26 +35,15 @@ void loop() {
   float humidity = dht.readHumidity(); // 湿度を取得
 
   int co2ppm = mhz19.getCO2PPM();
-  int temp = mhz19.getTemperature();
 
   // 画面描画
-  //M5.Lcd.clear();
   M5.Lcd.setCursor(20,20);
   M5.Lcd.printf("%2.0f C",temperature);
   M5.Lcd.setCursor(20,70);
   M5.Lcd.printf("%2.0f",humidity);
   M5.Lcd.println(" %");
 
-  //M5.Lcd.drawString("o",100,0,1);
-
-  //Serial.print("co2: ");
-  //Serial.println(co2ppm);
-  //Serial.print("temp: ");
-  //Serial.println(temp);
-
   M5.Lcd.setCursor(20,120);
   M5.Lcd.print(co2ppm);
   M5.Lcd.println(" ppm  ");
-  //M5.Lcd.setCursor(20,170);
-  //M5.Lcd.println(temp);
 }
