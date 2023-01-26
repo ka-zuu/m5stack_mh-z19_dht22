@@ -13,7 +13,9 @@ MHZ19_uart mhz19;
 
 void setup()
 {
-  dacWrite(25, 0); // スピーカーのノイズ対策
+  // スピーカーのホワイトノイズ対策
+  M5.Speaker.begin();
+  M5.Speaker.mute();
 
   M5.begin();
   dht.begin();
